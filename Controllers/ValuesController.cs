@@ -11,16 +11,19 @@ namespace netcore.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Value> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new Value[] {
+              new Value { Id = 1, Text = "value1"},
+              new Value { Id = 2, Text = "value2"}
+            };
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id:int}")]
+        public Value Get(int id)
         {
-            return "value";
+            return new Value { Id = id, Text = "value" };
         }
 
         // POST api/values
@@ -40,5 +43,9 @@ namespace netcore.Controllers
         public void Delete(int id)
         {
         }
+    }
+    public class Value {
+      public int Id { get; set; }
+      public string Text { get; set; }
     }
 }
